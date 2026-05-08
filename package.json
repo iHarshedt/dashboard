@@ -1,0 +1,23 @@
+{
+  "name": "tata-solar-dashboard",
+  "version": "1.0.0",
+  "description": "TP Solar | Customer Dashboard",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "npx tsx server.ts",
+    "build": "npx esbuild index.ts --bundle --outfile=bundle.js --minify",
+    "watch": "npx esbuild index.ts --bundle --outfile=bundle.js --watch",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "esbuild": "^0.20.2",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSW-1025 630Wp Solar Panel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/dist/tabler-icons.min.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f4;
+            --bg-tertiary: #eeede8;
+            --text-primary: #1a1a18;
+            --text-secondary: #5f5e5a;
+            --border: rgba(0, 0, 0, 0.12);
+            --border-md: rgba(0, 0, 0, 0.22);
+            --blue: #185FA5;
+            --blue-light: #E6F1FB;
+            --blue-dark: #0C447C;
+            --green-light: #EAF3DE;
+            --green-dark: #27500A;
+            --amber-light: #FAEEDA;
+            --amber-dark: #633806;
+            --red: #E24B4A;
+            --teal: #1D9E75;
+            --amber: #BA7517;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1c1c1a;
+                --bg-secondary: #252523;
+                --bg-tertiary: #2e2e2c;
+                --text-primary: #f0ede6;
+                --text-secondary: #9e9c96;
+                --border: rgba(255, 255, 255, 0.1);
+                --border-md: rgba(255, 255, 255, 0.2);
+                --blue-light: #0c2a45;
+                --blue-dark: #85B7EB;
+                --green-light: #0f2a08;
+                --green-dark: #97C459;
+                --amber-light: #2a1e08;
+                --amber-dark: #EF9F27;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            border-bottom: 0.5px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 28px;
+        }
+
+        .nav-logo {
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+        }
+
+        .nav-logo i {
+            color: var(--blue);
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            padding: 6px 13px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            color: var(--text-secondary);
+            border: none;
+            background: none;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* PAGES */
+        .page {
+            display: none;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 0 3rem;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            background: #0a2a4a;
+            color: #fff;
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -80px;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(55, 138, 221, 0.08);
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 215, 80, 0.15);
+            border: 1px solid rgba(255, 215, 80, 0.35);
+            color: #ffd750;
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.06em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-sub {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-kpi {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+        }
+
+        .kpi {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .kpi-v {
+            font-size: 24px;
+            font-weight: 500;
+            color: #ffd750;
+        }
+
+        .kpi-l {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 3px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-dark);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 22px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* SECTION */
+        .section {
+            padding: 2rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .section-sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--bg-primary);
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* FEAT GRID */
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feat-card {
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.1rem;
+            background: var(--bg-primary);
+        }
+
+        .feat-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            background: var(--blue-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .feat-icon i {
+            font-size: 18px;
+            color: var(--blue);
+        }
+
+        .feat-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .feat-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* SPEC GRID */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 0.9rem 1rem;
+        }
+
+        .spec-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .spec-val {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .spec-unit {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* TABLE */
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            text-align: left;
+            padding: 8px 10px;
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            border-bottom: 0.5px solid var(--border);
+            background: var(--bg-secondary);
+            font-weight: 500;
+        }
+
+        td {
+            padding: 9px 10px;
+            border-bottom: 0.5px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.r {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        td.hi {
+            color: var(--blue);
+            font-weight: 500;
+        }
+
+        .row-alt {
+            background: var(--bg-secondary);
+        }
+
+        td.muted {
+            color: var(--text-secondary);
+        }
+
+        /* STAT ROWS */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 0;
+            border-bottom: 0.5px solid var(--border);
+            font-size: 13px;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-key {
+            color: var(--text-secondary);
+        }
+
+        .stat-val {
+            font-weight: 500;
+        }
+
+        /* PILLS */
+        .cond-pills {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cond-pill {
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 0.5px solid var(--border-md);
+            background: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+
+        .cond-pill.on {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: #fff;
+        }
+
+        /* CALC */
+        .calc-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .calc-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            min-width: 175px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 4px;
+            border-radius: 4px;
+            cursor: pointer;
+            accent-color: var(--blue);
+        }
+
+        .range-val {
+            min-width: 52px;
+            text-align: right;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* RESULT CARDS */
+        .calc-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-top: 1.25rem;
+        }
+
+        .res-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1rem;
+        }
+
+        .res-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .res-val {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--blue);
+        }
+
+        /* DEGRADATION */
+        .warranty-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .warranty-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .warranty-num {
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--blue);
+        }
+
+        .warranty-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .deg-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            margin: 1rem 0 0.4rem;
+            overflow: hidden;
+            border: 0.5px solid var(--border);
+        }
+
+        .deg-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: #1D9E75;
+            transition: width 0.4s;
+        }
+
+        .deg-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+
+
+        /* BADGE */
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .badge-green {
+            background: var(--green-light);
+            color: var(--green-dark);
+        }
+
+        .badge-blue {
+            background: var(--blue-light);
+            color: var(--blue-dark);
+        }
+
+        /* NOTE */
+        .note {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 10px 14px;
+            }
+
+            .nav-link {
+                padding: 5px 8px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 2rem 1rem 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-logo"><i class="ti ti-solar-panel"></i> GSW-1025</div>
+        <div class="nav-links">
+            <button class="nav-link active" onclick="goto('home',this)">Overview</button>
+            <button class="nav-link" onclick="goto('specs',this)">Specs</button>
+            <button class="nav-link" onclick="goto('calc',this)">Calculator</button>
+            <button class="nav-link" onclick="goto('warranty',this)">Warranty</button>
+
+        </div>
+    </nav>
+
+    <!-- HOME -->
+    <div id="p-home" class="page active">
+        <div class="hero">
+            <div class="hero-tag"><i class="ti ti-certificate"></i> Bifacial Technology</div>
+            <div class="hero-title">GSW-1025 610Wp</div>
+            <div class="hero-sub">High-efficiency monocrystalline bifacial solar module<br>designed for utility-scale
+                and commercial applications</div>
+            <div class="hero-kpi">
+                <div class="kpi">
+                    <div class="kpi-v">21.90%</div>
+                    <div class="kpi-l">Max efficiency</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-v">610 Wp</div>
+                    <div class="kpi-l">Peak power</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-v">0~+5 W</div>
+                    <div class="kpi-l">Power tolerance</div>
+                </div>
+            </div>
+            <div class="hero-btns">
+                <button class="btn-primary" onclick="goto('specs', document.querySelectorAll('.nav-link')[1])"><i
+                        class="ti ti-bolt"></i> View specs</button>
+                <button class="btn-outline" onclick="goto('calc', document.querySelectorAll('.nav-link')[2])"><i
+                        class="ti ti-calculator"></i> Size my system</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Key features</div>
+            <div class="section-sub">What sets the GSW-1025 apart</div>
+            <div class="feat-grid">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="ti ti-sun"></i></div>
+                    <div class="feat-title">Bifacial gain</div>
+                    <div class="feat-desc">Up to 10% extra power from rear-side irradiance depending on albedo and
+                        installation design</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="ti ti-shield-check"></i></div>
+                    <div class="feat-title">IP68 junction box</div>
+                    <div class="feat-desc">Fully sealed against dust and sustained water immersion — built for harsh
+                        outdoor environments</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="ti ti-wind"></i></div>
+                    <div class="feat-title">5400 Pa snow load</div>
+                    <div class="feat-desc">Engineered for extreme weather with 2400 Pa wind and 5400 Pa snow load rating
+                    </div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="ti ti-plug-connected"></i></div>
+                    <div class="feat-title">MC4 compatible</div>
+                    <div class="feat-desc">Industry-standard connectors and 1500 V max system voltage for large-scale
+                        string designs</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="ti ti-temperature"></i></div>
+                    <div class="feat-title">Low temp. coefficient</div>
+                    <div class="feat-desc">-0.31%/°C Pmax delivers strong hot-climate performance with minimal thermal
+                        losses</div>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="ti ti-layers-difference"></i></div>
+                    <div class="feat-title">156-cell design</div>
+                    <div class="feat-desc">182×91 mm half-cut cells reduce resistive losses and improve shade tolerance
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">Quick specifications</div>
+            <div class="section-sub">STC conditions — 1000 W/m², 25°C, AM 1.5</div>
+            <div class="spec-grid">
+                <div class="spec-card">
+                    <div class="spec-label">Peak power</div>
+                    <div class="spec-val">610 <span class="spec-unit">Wp</span></div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Efficiency</div>
+                    <div class="spec-val">21.90 <span class="spec-unit">%</span></div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Voc</div>
+                    <div class="spec-val">55.42 <span class="spec-unit">V</span></div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Isc</div>
+                    <div class="spec-val">13.91 <span class="spec-unit">A</span></div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Vmp</div>
+                    <div class="spec-val">46.54 <span class="spec-unit">V</span></div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Imp</div>
+                    <div class="spec-val">13.11 <span class="spec-unit">A</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SPECS -->
+    <div id="p-specs" class="page">
+        <div class="section">
+            <div class="section-title">Electrical specifications</div>
+            <div class="section-sub">Switch between test conditions</div>
+            <div class="cond-pills">
+                <button class="cond-pill on" onclick="setCond('stc',this)">STC — 1000 W/m²</button>
+                <button class="cond-pill" onclick="setCond('noct',this)">NOCT — 800 W/m²</button>
+                <button class="cond-pill" onclick="setCond('bif',this)">+10% Bifacial</button>
+            </div>
+            <p id="cond-note" class="note">STC: Irradiance 1000 W/m², AM 1.5, Cell temperature 25°C</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th class="r">610W</th>
+                        </tr>
+                    </thead>
+                    <tbody id="spec-tbody"></tbody>
+                </table>
+            </div>
+
+            <div class="section-title" style="margin-top:2rem">Temperature coefficients</div>
+            <div class="card">
+                <div class="stat-row"><span class="stat-key">NOCT</span><span class="stat-val">45 ± 2 °C</span></div>
+                <div class="stat-row"><span class="stat-key">Pmax coefficient</span><span class="stat-val"
+                        style="color:#E24B4A">-0.31 % / °C</span></div>
+                <div class="stat-row"><span class="stat-key">Voc coefficient</span><span class="stat-val"
+                        style="color:#BA7517">-0.26 % / °C</span></div>
+                <div class="stat-row"><span class="stat-key">Isc coefficient</span><span class="stat-val"
+                        style="color:#1D9E75">+0.046 % / °C</span></div>
+                <div class="stat-row"><span class="stat-key">Operating temp. range</span><span class="stat-val">-40 to
+                        +85 °C</span></div>
+            </div>
+
+            <div class="section-title" style="margin-top:1.5rem">Module general</div>
+            <div class="card">
+                <div class="stat-row"><span class="stat-key">Dimensions (L×W×H)</span><span class="stat-val">2456 × 1134
+                        × 35 mm</span></div>
+                <div class="stat-row"><span class="stat-key">Weight</span><span class="stat-val">36 ± 1 kg</span></div>
+                <div class="stat-row"><span class="stat-key">Cells</span><span class="stat-val">156 pcs — 182 × 91
+                        mm</span></div>
+                <div class="stat-row"><span class="stat-key">Frame</span><span class="stat-val">Anodized
+                        aluminium</span></div>
+                <div class="stat-row"><span class="stat-key">Glass (front / back)</span><span class="stat-val">2 mm each
+                        side</span></div>
+                <div class="stat-row"><span class="stat-key">Junction box</span><span class="stat-val">IP68</span></div>
+                <div class="stat-row"><span class="stat-key">Connector</span><span class="stat-val">MC4 / MC4
+                        compatible</span></div>
+                <div class="stat-row"><span class="stat-key">Max system voltage</span><span class="stat-val">1500
+                        V</span></div>
+                <div class="stat-row"><span class="stat-key">Max series fuse</span><span class="stat-val">25 A</span>
+                </div>
+                <div class="stat-row"><span class="stat-key">Limited reverse current</span><span class="stat-val">25
+                        A</span></div>
+                <div class="stat-row"><span class="stat-key">Max static load (wind/snow)</span><span
+                        class="stat-val">2400 / 5400 Pa</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div id="p-calc" class="page">
+        <div class="section">
+            <div class="section-title">System size calculator</div>
+            <div class="section-sub">Estimate energy output based on your installation parameters</div>
+            <div class="card">
+                <div class="calc-row">
+                    <span class="calc-label">Number of panels</span>
+                    <input type="range" min="1" max="200" value="30" step="1" id="c-panels" oninput="calcUpdate()">
+                    <span id="v-panels" class="range-val">30</span>
+                </div>
+                <div class="calc-row">
+                    <span class="calc-label">Daily peak sun hours</span>
+                    <input type="range" min="2" max="8" value="5" step="0.5" id="c-sun" oninput="calcUpdate()">
+                    <span id="v-sun" class="range-val">5.0 h</span>
+                </div>
+                <div class="calc-row">
+                    <span class="calc-label">System efficiency</span>
+                    <input type="range" min="70" max="95" value="80" step="1" id="c-eff" oninput="calcUpdate()">
+                    <span id="v-eff" class="range-val">80%</span>
+                </div>
+                <div class="calc-row">
+                    <span class="calc-label">Electricity tariff (₹/kWh)</span>
+                    <input type="range" min="3" max="12" value="7" step="0.5" id="c-tariff" oninput="calcUpdate()">
+                    <span id="v-tariff" class="range-val">₹7.0</span>
+                </div>
+                <div class="calc-results" id="calc-out"></div>
+            </div>
+            <p class="note">Based on 630 Wp per panel at STC. Results are estimates — actual output depends on location,
+                shading, and system design.</p>
+        </div>
+    </div>
+
+    <!-- WARRANTY -->
+    <div id="p-warranty" class="page">
+        <div class="section">
+            <div class="section-title">Warranty & performance</div>
+            <div class="section-sub">Industry-leading guarantees</div>
+            <div class="warranty-row">
+                <div class="warranty-card">
+                    <div class="warranty-num">12</div>
+                    <div class="warranty-desc">Years product warranty</div>
+                </div>
+                <div class="warranty-card">
+                    <div class="warranty-num">25</div>
+                    <div class="warranty-desc">Years performance warranty</div>
+                </div>
+                <div class="warranty-card">
+                    <div class="warranty-num">80%</div>
+                    <div class="warranty-desc">Output at 25 years</div>
+                </div>
+            </div>
+
+            <div class="section-title">Degradation curve</div>
+            <div class="card">
+                <p style="font-size:13px;color:var(--text-secondary);margin-bottom:1rem">Drag the slider to see power
+                    output over module lifetime</p>
+                <div class="calc-row">
+                    <span class="calc-label">Year</span>
+                    <input type="range" min="1" max="25" value="1" step="1" id="deg-year" oninput="degUpdate()">
+                    <span id="v-deg-year" class="range-val">1</span>
+                </div>
+                <div class="deg-bar">
+                    <div class="deg-fill" id="deg-fill" style="width:97.9%"></div>
+                </div>
+                <div class="deg-labels"><span>Year 1</span><span>Year 25</span></div>
+                <div class="calc-results" style="margin-top:1rem">
+                    <div class="res-card">
+                        <div class="res-label">Power output</div>
+                        <div class="res-val" id="deg-power">617 W</div>
+                    </div>
+                    <div class="res-card">
+                        <div class="res-label">Remaining capacity</div>
+                        <div class="res-val" id="deg-pct">97.9%</div>
+                    </div>
+                    <div class="res-card">
+                        <div class="res-label">Efficiency at year</div>
+                        <div class="res-val" id="deg-eff">22.13%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title" style="margin-top:1.5rem">Certifications & tolerances</div>
+            <div class="card">
+                <div class="stat-row"><span class="stat-key">Dimension tolerance</span><span class="stat-val">± 2
+                        mm</span></div>
+                <div class="stat-row"><span class="stat-key">Junction box cable length</span><span class="stat-val">0 ~
+                        50 mm</span></div>
+                <div class="stat-row"><span class="stat-key">Electrical measurement uncertainty</span><span
+                        class="stat-val">≤ ±3%</span></div>
+                <div class="stat-row"><span class="stat-key">Bifacial factor</span><span class="stat-val">80% ±
+                        5%</span></div>
+                <div class="stat-row"><span class="stat-key">Power tolerance</span><span class="stat-val"><span
+                            class="badge badge-green">0 ~ +5 W</span></span></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const specData = {
+            stc: {
+                note: 'STC: Irradiance 1000 W/m², AM 1.5, Cell temperature 25°C',
+                rows: [
+                    ['Pmax (W)', [610]],
+                    ['Efficiency (%)', [21.90]],
+                    ['Vmp (V)', [46.54]],
+                    ['Imp (A)', [13.11]],
+                    ['Voc (V)', [55.42]],
+                    ['Isc (A)', [13.91]],
+                ]
+            },
+            noct: {
+                note: 'NOCT: Irradiance 800 W/m², Ambient temperature 20°C, Wind speed 1 m/s',
+                rows: [
+                    ['Pmax (W)', [458]],
+                    ['Vmp (V)', [43.75]],
+                    ['Imp (A)', [10.49]],
+                    ['Voc (V)', [52.64]],
+                    ['Isc (A)', [11.27]],
+                ]
+            },
+            bif: {
+                note: 'Bifacial factor 80 ± 5%. Gain depends on plant design, location and albedo.',
+                rows: [
+                    ['Pmax (W)', [671]],
+                    ['Vmp (V)', [46.57]],
+                    ['Imp (A)', [14.41]],
+                    ['Voc (V)', [55.44]],
+                    ['Isc (A)', [15.32]],
+                ]
+            }
+        };
+
+        function renderSpec(cond) {
+            const d = specData[cond];
+            document.getElementById('cond-note').textContent = d.note;
+            const tb = document.getElementById('spec-tbody');
+            tb.innerHTML = '';
+            d.rows.forEach((row, i) => {
+                const tr = document.createElement('tr');
+                if (i % 2 === 1) tr.className = 'row-alt';
+                tr.innerHTML = `<td class="muted">${row[0]}</td>` +
+                    row[1].map(v =>
+                        `<td class="r hi">${typeof v === 'number' && !Number.isInteger(v) ? v.toFixed(2) : v}</td>`
+                    ).join('');
+                tb.appendChild(tr);
+            });
+        }
+
+        function setCond(cond, btn) {
+            document.querySelectorAll('.cond-pill').forEach(b => b.classList.remove('on'));
+            btn.classList.add('on');
+            renderSpec(cond);
+        }
+
+        function goto(name, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+            document.getElementById('p-' + name).classList.add('active');
+            btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function calcUpdate() {
+            const n = parseInt(document.getElementById('c-panels').value);
+            const h = parseFloat(document.getElementById('c-sun').value);
+            const eff = parseInt(document.getElementById('c-eff').value) / 100;
+            const tariff = parseFloat(document.getElementById('c-tariff').value);
+
+            document.getElementById('v-panels').textContent = n;
+            document.getElementById('v-sun').textContent = h.toFixed(1) + ' h';
+            document.getElementById('v-eff').textContent = Math.round(eff * 100) + '%';
+            document.getElementById('v-tariff').textContent = '₹' + tariff.toFixed(1);
+
+            const kw = (n * 630) / 1000;
+            const daily = kw * h * eff;
+            const monthly = daily * 30;
+            const annual = daily * 365;
+            const savings = annual * tariff;
+            const co2 = (annual * 0.7 / 1000).toFixed(1);
+
+            document.getElementById('calc-out').innerHTML = `
+      <div class="res-card"><div class="res-label">System capacity</div><div class="res-val">${kw.toFixed(2)} kWp</div></div>
+      <div class="res-card"><div class="res-label">Daily output</div><div class="res-val">${daily.toFixed(1)} kWh</div></div>
+      <div class="res-card"><div class="res-label">Monthly output</div><div class="res-val">${Math.round(monthly).toLocaleString()} kWh</div></div>
+      <div class="res-card"><div class="res-label">Annual output</div><div class="res-val">${Math.round(annual).toLocaleString()} kWh</div></div>
+      <div class="res-card"><div class="res-label">Est. annual savings</div><div class="res-val">₹${Math.round(savings).toLocaleString()}</div></div>
+      <div class="res-card"><div class="res-label">CO₂ offset (est.)</div><div class="res-val">${co2} t/yr</div></div>
+    `;
+        }
+
+        function degUpdate() {
+            const yr = parseInt(document.getElementById('deg-year').value);
+            document.getElementById('v-deg-year').textContent = yr;
+
+            let pct;
+            if (yr === 1) pct = 97.9;
+            else pct = Math.max(80, 97.9 - (yr - 1) * ((97.9 - 80) / 24));
+
+            const power = Math.round(630 * pct / 100);
+            const effAtYear = (22.62 * pct / 100).toFixed(2);
+
+            document.getElementById('deg-fill').style.width = pct + '%';
+            document.getElementById('deg-power').textContent = power + ' W';
+            document.getElementById('deg-pct').textContent = pct.toFixed(1) + '%';
+            document.getElementById('deg-eff').textContent = effAtYear + '%';
+        }
+
+        // Init
+        renderSpec('stc');
+        calcUpdate();
+        degUpdate();
+    </script>
+</body>
+
+</html>

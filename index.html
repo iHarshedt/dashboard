@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Solar | Customer Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/dist/tabler-icons.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-theme">
+    <div class="bg-orb orb-primary"></div>
+    <div class="bg-orb orb-secondary"></div>
+    
+    <nav class="premium-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="ti ti-solar-panel-2 text-accent"></i>
+                <span>TP SOLAR</span>
+            </div>
+            <div class="nav-links">
+                <button class="nav-link active" data-target="dashboard">My Dashboard</button>
+                <button class="nav-link" data-target="calculator">Bill Calculator</button>
+                <button class="nav-link" data-target="estimator">Unit Estimator</button>
+                <button class="nav-link">Products</button>
+            </div>
+            <button class="contact-btn">Schedule Free Consultation</button>
+        </div>
+    </nav>
+
+    <main class="dashboard-wrapper">
+        <!-- Dashboard View -->
+        <div id="view-dashboard" class="page-view active">
+            <header class="dashboard-header">
+                <div>
+                    <h1 class="hero-title">Design Your <span class="gradient-text">Solar Future</span></h1>
+                    <p class="hero-desc">Discover your savings potential and environmental impact with TP Solar's premium high-efficiency panels.</p>
+                </div>
+            </header>
+
+            <div class="dashboard-layout">
+            <!-- Left Column: Controls -->
+            <div class="dashboard-sidebar">
+                <div class="glass-panel controls-panel">
+                    <h3 class="panel-title"><i class="ti ti-adjustments-horizontal"></i> System Calculator</h3>
+                    
+                    <div class="control-group">
+                        <label>Select Panel Technology</label>
+                        <div class="panel-toggle">
+                            <button class="toggle-btn" data-panel="630">
+                                <div class="toggle-title">630Wp Flagship</div>
+                                <div class="toggle-sub">22.62% Efficiency</div>
+                            </button>
+                            <button class="toggle-btn active" data-panel="580">
+                                <div class="toggle-title">580Wp Premium</div>
+                                <div class="toggle-sub">22.45% Efficiency</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Billing Cycle</label>
+                        <div class="panel-toggle" id="dash-cycle-toggle">
+                            <button class="toggle-btn active" data-cycle="1">
+                                <div class="toggle-title">1 Month</div>
+                            </button>
+                            <button class="toggle-btn" data-cycle="2">
+                                <div class="toggle-title">2 Months</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div id="phase-alert" class="alert-warning" style="display: none; margin-bottom: 1rem; padding: 10px; border-radius: 8px; font-size: 0.85rem; background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.3); color: #fbbf24;">
+                            <i class="ti ti-alert-triangle"></i> <strong>Recommendation:</strong> High consumption detected (>1000 units/mo). A Three Phase connection is highly recommended for stability and load management.
+                        </div>
+                        <label>Connection Phase</label>
+                        <div class="panel-toggle" id="phase-toggle">
+                            <button class="toggle-btn active" data-phase="1">
+                                <div class="toggle-title">Single Phase</div>
+                            </button>
+                            <button class="toggle-btn" data-phase="3">
+                                <div class="toggle-title">Three Phase</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="slider-header">
+                            <label id="bill-label">Monthly Electricity Bill</label>
+                            <div class="text-right">
+                                <span class="highlight text-accent">₹<span id="val-bill">5000</span></span>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">~<span id="val-units">0</span> <span id="val-unit-label">Units/mo</span></div>
+                            </div>
+                        </div>
+                        <input type="range" id="slider-bill" class="premium-slider" min="500" max="30000" step="100" value="5000">
+                        <div class="slider-labels"><span>₹500</span><span>₹30K</span></div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="slider-header">
+                            <label>Available Roof Space</label>
+                            <span class="highlight text-accent"><span id="val-roof">500</span> sq.ft</span>
+                        </div>
+                        <input type="range" id="slider-roof" class="premium-slider" min="100" max="3000" step="50" value="500">
+                        <div class="slider-labels"><span>100 sq.ft</span><span>3000 sq.ft</span></div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="slider-header">
+                            <label>Daily Sun Hours</label>
+                            <span class="highlight text-accent"><span id="val-sun">5.0</span> hr</span>
+                        </div>
+                        <input type="range" id="slider-sun" class="premium-slider" min="3" max="8" step="0.5" value="5">
+                        <div class="slider-labels"><span>3 hr</span><span>8 hr</span></div>
+                    </div>
+                </div>
+
+                <!-- Customer Guarantees -->
+                <div class="glass-panel tech-summary mt-4">
+                    <h3 class="panel-title"><i class="ti ti-shield-check"></i> TP Solar Guarantees</h3>
+                    <div class="guarantee-list">
+                        <div class="g-item">
+                            <div class="g-icon"><i class="ti ti-certificate"></i></div>
+                            <div>
+                                <h4>12-Year Product Warranty</h4>
+                                <p>Comprehensive coverage against manufacturing defects.</p>
+                            </div>
+                        </div>
+                        <div class="g-item">
+                            <div class="g-icon"><i class="ti ti-trending-up"></i></div>
+                            <div>
+                                <h4 id="warranty-years">30-Year Performance Warranty</h4>
+                                <p id="warranty-desc">Guaranteed 87.4% output at year 30.</p>
+                            </div>
+                        </div>
+                        <div class="g-item">
+                            <div class="g-icon"><i class="ti ti-droplet"></i></div>
+                            <div>
+                                <h4>IP68 Weather Protection</h4>
+                                <p>Engineered for extreme dust and water resistance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Visualizations & KPIs -->
+            <div class="dashboard-main">
+                <div class="kpi-grid">
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon"><i class="ti ti-home-bolt"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Recommended System</div>
+                            <div class="stat-val"><span id="out-sys-size">0.0</span><span class="unit">kW</span></div>
+                            <div class="stat-subtext"><span id="out-panels">0</span> panels required</div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon text-success" style="background: rgba(16, 185, 129, 0.1);"><i class="ti ti-cash"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Est. Monthly Savings</div>
+                            <div class="stat-val text-success">₹<span id="out-savings-mo">0</span></div>
+                            <div class="stat-subtext">~₹<span id="out-savings-yr">0</span> annually</div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon text-warning" style="background: rgba(245, 158, 11, 0.1);"><i class="ti ti-calendar-stats"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Payback Period</div>
+                            <div class="stat-val text-warning"><span id="out-payback">0.0</span><span class="unit">yrs</span></div>
+                            <div class="stat-subtext">Then 100% free electricity</div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon text-accent"><i class="ti ti-leaf"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-label">CO₂ Offset / Year</div>
+                            <div class="stat-val text-accent"><span id="out-co2">0.0</span><span class="unit">Tons</span></div>
+                            <div class="stat-subtext">Equivalent to <span id="out-trees">0</span> trees</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel chart-panel">
+                    <div class="chart-header">
+                        <div>
+                            <h3 class="panel-title mb-0"><i class="ti ti-chart-area-line"></i> Financial Projection</h3>
+                            <p class="chart-desc">Cumulative Savings vs Utility Cost over <span id="chart-years">30</span> years.</p>
+                        </div>
+                        <div class="chart-legend-custom">
+                            <span class="legend-item"><span class="dot utility"></span> Utility Cost</span>
+                            <span class="legend-item"><span class="dot solar"></span> Solar Savings</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Bill Calculator View -->
+        <div id="view-calculator" class="page-view" style="display: none;">
+            <header class="dashboard-header">
+                <div>
+                    <h1 class="hero-title">KSEB <span class="gradient-text">Tariff Calculator</span></h1>
+                    <p class="hero-desc">Calculate your exact electricity bill based on the 2025-2027 KSEB domestic tariff slabs.</p>
+                </div>
+            </header>
+
+            <div class="calculator-grid">
+                <!-- Column 1: Inputs -->
+                <div class="dashboard-sidebar">
+                    <div class="glass-panel controls-panel">
+                        <h3 class="panel-title"><i class="ti ti-receipt"></i> Bill Details</h3>
+                        
+                        <div class="control-group">
+                            <label>Billing Cycle</label>
+                            <div class="panel-toggle" id="calc-cycle-toggle">
+                                <button class="toggle-btn active" data-cycle="1">
+                                    <div class="toggle-title">1 Month</div>
+                                </button>
+                                <button class="toggle-btn" data-cycle="2">
+                                    <div class="toggle-title">2 Months</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Tariff Type</label>
+                            <div class="panel-toggle" id="calc-tod-toggle">
+                                <button class="toggle-btn active" data-tod="false">
+                                    <div class="toggle-title">Normal</div>
+                                </button>
+                                <button class="toggle-btn" data-tod="true">
+                                    <div class="toggle-title">TOD</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="calc-normal-inputs">
+                            <div class="control-group">
+                                <label>Consumption (Units in cycle)</label>
+                                <input type="number" id="calc-units" class="premium-input" placeholder="e.g. 240" value="240">
+                            </div>
+                        </div>
+
+                        <div id="calc-tod-inputs" style="display: none; margin: 1.5rem 0;">
+                            <div class="tod-row">
+                                <div class="tod-card">
+                                    <div class="tod-icon normal"><i class="ti ti-sun"></i></div>
+                                    <div class="tod-label">Normal</div>
+                                    <input type="number" id="tod-normal" class="tod-input" placeholder="0" value="0">
+                                    <div class="tod-time">6AM - 6PM</div>
+                                </div>
+                                <div class="tod-card">
+                                    <div class="tod-icon peak"><i class="ti ti-moon-stars"></i></div>
+                                    <div class="tod-label">Peak</div>
+                                    <input type="number" id="tod-input-peak" class="tod-input" placeholder="0" value="0">
+                                    <div class="tod-time">6PM - 10PM</div>
+                                </div>
+                                <div class="tod-card">
+                                    <div class="tod-icon offpeak"><i class="ti ti-zzz"></i></div>
+                                    <div class="tod-label">Off-Peak</div>
+                                    <input type="number" id="tod-input-offpeak" class="tod-input" placeholder="0" value="0">
+                                    <div class="tod-time">10PM - 6AM</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Connection Phase</label>
+                            <div class="panel-toggle" id="calc-phase-toggle">
+                                <button class="toggle-btn active" data-phase="1">
+                                    <div class="toggle-title">Single Phase</div>
+                                </button>
+                                <button class="toggle-btn" data-phase="3">
+                                    <div class="toggle-title">Three Phase</div>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button id="btn-calc-bill" class="contact-btn" style="width: 100%; margin-top: 1rem; border-radius: 8px;">Calculate Bill</button>
+                    </div>
+                </div>
+
+                <!-- Column 2: Summary Cards -->
+                <div class="calculator-main">
+                    <div class="stat-card glass-panel">
+                        <div class="stat-icon"><i class="ti ti-bolt"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Energy Charge</div>
+                            <div class="stat-val">₹<span id="cb-energy">0.00</span></div>
+                            <div class="stat-subtext"><span id="cb-type">Telescopic</span></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card glass-panel">
+                        <div class="stat-icon"><i class="ti ti-plug"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-label">Fixed Charge</div>
+                            <div class="stat-val">₹<span id="cb-fixed">0.00</span></div>
+                            <div class="stat-subtext">Based on consumption</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card glass-panel total-bill-card">
+                        <div class="stat-content">
+                            <div class="stat-label" style="color: var(--text-primary);">Total Monthly Bill</div>
+                            <div class="stat-val">₹<span id="cb-total">0.00</span></div>
+                            <div class="stat-subtext" style="color: var(--text-muted);">Includes Duty & Surcharges</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Breakdown -->
+                <div class="glass-panel chart-panel">
+                    <h3 class="panel-title"><i class="ti ti-list-details"></i> Calculation Breakdown</h3>
+                    <div class="premium-table-wrapper" style="margin-top: 1.5rem;">
+                        <table class="premium-table" style="width: 100%; border-collapse: collapse; color: var(--text-secondary);">
+                            <thead>
+                                <tr style="text-align: left; font-size: 0.9rem; border-bottom: 1px solid var(--border-glass);">
+                                    <th style="padding: 1rem 0;">Slab (Units)</th>
+                                    <th style="padding: 1rem 0;">Rate (₹)</th>
+                                    <th style="padding: 1rem 0;">Charge (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cb-breakdown">
+                                <!-- Dynamic Content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit Estimator View -->
+        <div id="view-estimator" class="page-view" style="display: none;">
+            <header class="dashboard-header">
+                <div>
+                    <h1 class="hero-title">Unit <span class="gradient-text">Estimator</span></h1>
+                    <p class="hero-desc">Reverse-calculate your energy consumption from your electricity bill amount.</p>
+                </div>
+            </header>
+
+            <div class="calculator-grid">
+                <!-- Column 1: Inputs -->
+                <div class="dashboard-sidebar">
+                    <div class="glass-panel controls-panel">
+                        <h3 class="panel-title"><i class="ti ti-currency-rupee"></i> Input Bill</h3>
+                        
+                        <div class="control-group">
+                            <label>Billing Cycle</label>
+                            <div class="panel-toggle" id="est-cycle-toggle">
+                                <button class="toggle-btn active" data-cycle="1">
+                                    <div class="toggle-title">1 Month</div>
+                                </button>
+                                <button class="toggle-btn" data-cycle="2">
+                                    <div class="toggle-title">2 Months</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Total Bill Amount (₹)</label>
+                            <input type="number" id="est-bill-amount" class="premium-input" placeholder="e.g. 1148" value="1148" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-glass); background: rgba(255,255,255,0.05); color: white; font-family: inherit; font-size: 1.1rem; margin-bottom: 1rem;">
+                        </div>
+
+                        <div class="control-group">
+                            <label>Connection Phase</label>
+                            <div class="panel-toggle" id="est-phase-toggle">
+                                <button class="toggle-btn active" data-phase="1">
+                                    <div class="toggle-title">Single Phase</div>
+                                </button>
+                                <button class="toggle-btn" data-phase="3">
+                                    <div class="toggle-title">Three Phase</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button id="btn-run-estimator" class="contact-btn" style="width: 100%; margin-top: 1rem; border-radius: 8px;">Estimate Units</button>
+                    </div>
+                </div>
+
+                <!-- Column 2: Large Result -->
+                <div class="stat-card glass-panel total-bill-card" style="height: 100%; justify-content: center; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(59, 130, 246, 0.2)); border-color: rgba(14, 165, 233, 0.3);">
+                    <div class="stat-content">
+                        <div class="stat-label" style="color: var(--text-primary); font-size: 1.2rem;">Estimated Consumption</div>
+                        <div class="stat-val" style="color: var(--accent-primary); font-size: 5rem;"><span id="est-result-units">0</span> <span style="font-size: 1.5rem; color: var(--text-secondary);">Units</span></div>
+                        <div class="stat-subtext" style="font-size: 1.1rem; color: var(--text-muted); margin-top: 1rem;">Based on 2025-2027 KSEB Tariff Logic</div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Info -->
+                <div class="glass-panel chart-panel">
+                    <h3 class="panel-title"><i class="ti ti-info-circle"></i> How it works</h3>
+                    <div style="margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">
+                        <p style="margin-bottom: 1rem;">This tool uses an advanced iterative algorithm to find the exact number of units that would result in your total bill amount.</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.8rem; display: flex; gap: 0.8rem;"><i class="ti ti-check text-success"></i> Accounts for Fixed Charges</li>
+                            <li style="margin-bottom: 0.8rem; display: flex; gap: 0.8rem;"><i class="ti ti-check text-success"></i> Includes 10% Electricity Duty</li>
+                            <li style="margin-bottom: 0.8rem; display: flex; gap: 0.8rem;"><i class="ti ti-check text-success"></i> Handles Subsidies</li>
+                            <li style="margin-bottom: 0.8rem; display: flex; gap: 0.8rem;"><i class="ti ti-check text-success"></i> Bimonthly slab doubling logic</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="bundle.js"></script>
+</body>
+</html>
