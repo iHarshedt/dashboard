@@ -1,6 +1,6 @@
 declare var Chart: any;
 
-// Panel specifications based on TP Solar Images
+// Panel specifications based on Solar Images
 const PANELS = {
     "580": {
         power: 580,

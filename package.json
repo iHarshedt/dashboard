@@ -1,7 +1,7 @@
 {
   "name": "dashboard",
   "version": "1.0.0",
-  "description": "TP Solar | Customer Dashboard",
+  "description": "Solar | Customer Dashboard",
   "main": "index.ts",
   "type": "module",
   "scripts": {
