@@ -1,4 +1,4 @@
-# tata
+# dashboard
 
 To install dependencies:
 
